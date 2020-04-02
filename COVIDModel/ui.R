@@ -96,8 +96,9 @@ shinyUI(function(req) {
                    # Other Settings
                    HTML('<h4><b>Settings</b></h4>'),
                    
-                   fluidRow(column(8, HTML('<b>Use Markov Model (beta)</b> <br>')), 
-                            column(4, switchInput(inputId = "model_select", value = FALSE))),
+                   # Removing markov option for now
+                   # fluidRow(column(8, HTML('<b>Use Markov Model (beta)</b> <br>')), 
+                   #          column(4, switchInput(inputId = "model_select", value = FALSE))),
                    
                    HTML('<br>'),
                    

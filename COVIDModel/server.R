@@ -376,7 +376,7 @@ shinyServer(function(input, output, session) {
             if (input$input.metric == 'Hospitalizations'){
                 int.date.input <- dateInput(inputId = 'int_date', 
                                             label = "Date Intervention is Implemented", 
-                                            min = input$curr_date - params$hosp.delay.time, 
+                                            min = input$curr_date, 
                                             value = input$curr_date)
             }
             else{
