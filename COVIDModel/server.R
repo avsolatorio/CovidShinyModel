@@ -361,11 +361,11 @@ shinyServer(function(input, output, session) {
     # blank intervention dataframes
     int.df.with.re <- data.frame('Day' = numeric(0),
                                  'New Re' = numeric(0), 
-                                 'Time until full effectiveness' =  numeric(0))
+                                 'Days to Reach New Re' =  numeric(0))
     
     int.df.with.double <- data.frame('Day' = numeric(0),
                                      'New Double Time' = numeric(0), 
-                                     'Time until full effectiveness' =  numeric(0))
+                                     'Days to Reach New Re' =  numeric(0))
     
     intervention.table <- reactiveVal(int.df.with.re)
     
@@ -391,7 +391,7 @@ shinyServer(function(input, output, session) {
                     int.date.input,
                     uiOutput(outputId = 'int_val'),
                     sliderInput('smooth.int', 
-                                label = "Time for intervention to reach full effectiveness", 
+                                label = "Days to Reach New Re", 
                                 value = 0, 
                                 min = 0, 
                                 max = 30),
@@ -471,12 +471,12 @@ shinyServer(function(input, output, session) {
         int.df$Date <- int.df$Day + input$curr_date
         
         if (input$usedouble){
-            int.df <- int.df[,c('Date', 'New.Double.Time', 'Time.until.full.effectiveness', 'Day')]
-            colnames(int.df) <- c('Date', 'New Double Time', 'Time until full effectiveness', 'Day')
+            int.df <- int.df[,c('Date', 'New.Double.Time', 'Days.to.Reach.New.Re', 'Day')]
+            colnames(int.df) <- c('Date', 'New Double Time', 'Days to Reach New Re', 'Day')
         }
         else{
-            int.df <- int.df[,c('Date', 'New.Re', 'Time.until.full.effectiveness', 'Day')]
-            colnames(int.df) <- c('Date', 'New Re', 'Time until full effectiveness', 'Day')
+            int.df <- int.df[,c('Date', 'New.Re', 'Days.to.Reach.New.Re', 'Day')]
+            colnames(int.df) <- c('Date', 'New Re', 'Days to Reach New Re', 'Day')
         }
         
         if (nrow(int.df) > 0){
@@ -550,13 +550,13 @@ shinyServer(function(input, output, session) {
             if (!is.null(input$r0_prior) & !is.null(params$int.new.r0)){
                 int.table.temp <- rbind(list(Day = c(params$int.new.num.days, -curr.day, input$proj_num_days ),
                                              New.Re = c(params$int.new.r0, input$r0_prior, NA ), 
-                                             Time.until.full.effectiveness = c(params$int.smooth.days, 0, 0)),
+                                             Days.to.Reach.New.Re = c(params$int.smooth.days, 0, 0)),
                                         int.table.temp)
             }
             else{
                 int.table.temp <- rbind(list(Day = c(-curr.day, input$proj_num_days),
                                              New.Re = c(r0.default, NA),
-                                             Time.until.full.effectiveness = c(0, 0)),
+                                             Days.to.Reach.New.Re = c(0, 0)),
                                         int.table.temp)
             }
             
@@ -564,7 +564,7 @@ shinyServer(function(input, output, session) {
         else{
             int.table.temp <- rbind(list(Day = c(params$int.new.num.days, -curr.day, input$proj_num_days),
                                          New.Double.Time = c(params$int.new.double, input$doubling_time, NA ),
-                                         Time.until.full.effectiveness = c(params$int.smooth.days, 0, 0)),
+                                         Days.to.Reach.New.Re = c(params$int.smooth.days, 0, 0)),
                                     int.table.temp)
         }
         

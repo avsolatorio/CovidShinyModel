@@ -260,7 +260,7 @@ findBestRe <- function(N, start.exp, num.days, day.vec, num_actual.vec, params){
 #' 
 #' This takes as input an intervention dataframe (int.table). The dataframe should have as 
 #' columns 'Day' number, new intervention metric (either New.Re or New.Double.Time) 
-#' and the number of days that the intervention is smoothed over (Days.of.Smoothing). 
+#' and the number of days that the intervention is smoothed over (Days.to.Reach.New.Re). 
 #' 
 #' The function also takes as input a gamma value a flag for whether doubling time or is 
 #' used as the metric (usedouble). 
@@ -295,7 +295,7 @@ create.beta.vec <- function(int.table, gamma, usedouble){
   day.vec <- int.table.temp$Day
   rep.vec <- day.vec[2:length(day.vec)] - day.vec[1:length(day.vec) - 1]
   betas <- int.table.temp$beta[1:length(day.vec) - 1]
-  smooth.vec <- int.table.temp$Time.until.full.effectiveness
+  smooth.vec <- int.table.temp$Days.to.Reach.New.Re
   
   beta.vec <- c()
   
@@ -370,7 +370,7 @@ add.to.hist.table <- function(hist.data, date.hist, num.hospitalized.hist, curr.
 #' 
 #' Bind rows to the intervention table. 
 #'
-#' @param int.table Dataframe with Day, New.Re (or New.Double.Time), and Days.of.Smoothing 
+#' @param int.table Dataframe with Day, New.Re (or New.Double.Time), and Days.to.Reach.New.Re 
 #' columns.
 #' @param params ReactiveValues list of parameters.
 #' @param usedouble Boolean. TRUE if doubling time is used in the app. 
@@ -381,14 +381,14 @@ bind.to.intervention <- function(int.table, params, usedouble){
     new.table <- rbind(int.table,
                        list('Day' = params$int.new.num.days , 
                             'New.Double.Time'= params$int.new.double, 
-                            'Time.until.full.effectiveness' = params$int.smooth.days
+                            'Days.to.Reach.New.Re' = params$int.smooth.days
                        ))
   }
   else{
     new.table <- rbind(int.table,
                        list('Day' = params$int.new.num.days, 
                             'New.Re' = params$int.new.r0,
-                            'Time.until.full.effectiveness' = params$int.smooth.days
+                            'Days.to.Reach.New.Re' = params$int.smooth.days
                        ))
   }
   
