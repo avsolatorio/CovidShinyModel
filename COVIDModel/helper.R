@@ -381,14 +381,14 @@ bind.to.intervention <- function(int.table, params, usedouble){
     new.table <- rbind(int.table,
                        list('Day' = params$int.new.num.days , 
                             'New.Double.Time'= params$int.new.double, 
-                            'Days.of.Smoothing' = params$int.smooth.days
+                            'Time.until.full.effectiveness' = params$int.smooth.days
                        ))
   }
   else{
     new.table <- rbind(int.table,
                        list('Day' = params$int.new.num.days, 
                             'New.Re' = params$int.new.r0,
-                            'Days.of.Smoothing' = params$int.smooth.days
+                            'Time.until.full.effectiveness' = params$int.smooth.days
                        ))
   }
   
