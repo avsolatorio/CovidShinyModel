@@ -340,10 +340,23 @@ shinyServer(function(input, output, session) {
     
     curr.day.list <- reactive({
         
-        num.actual <- ifelse(is.null(input$num_cases), 
-                             ifelse(is.null(input$num_hospitalized), 50, input$num_hospitalized),
-                             input$num_cases)
-        
+        if (input$input.metric == "Hospitalizations"){
+            
+            # This is to fix a startup issue with Shiny where the input$num_hospitalized
+            # element does not load fast enough, causing a 1/2 second error message to 
+            # pop up.
+            # TODO: make this less hacky 
+            if (!is.null(input$num_hospitalized)){
+                num.actual <- input$num_hospitalized
+            }
+            else{
+                num.actual <- 50
+            }
+        }
+        else{
+            num.actual <- input$num_cases
+        }
+
         find.curr.estimates(N = input$num_people,
                             beta.vector = initial_beta_vector(), 
                             num.days = est.days, 
@@ -615,6 +628,19 @@ shinyServer(function(input, output, session) {
             # shift the number of days to account for day 0 in the model 
             seir.df$days.shift <- seir.df$day - curr.day
             seir.df[seir.df$days.shift == 0,]$hosp <- input$num_hospitalized
+            
+            # Note: this will cause an error if Model 2 is run because icu.rate and vent.rate 
+            # are not available
+            #
+            # TODO: this is very hack-y.... And may not give a good alignment for projections 
+            # at days.shift>0
+            num.hosp.input <- input$num_hospitalized
+            num.icu.orig <- num.hosp.input * params$icu.rate
+            num.vent.orig <- num.icu.orig * params$vent.rate 
+
+            seir.df[seir.df$days.shift == 0,]$hosp <- num.hosp.input
+            seir.df[seir.df$days.shift == 0,]$icu <- num.icu.orig
+            seir.df[seir.df$days.shift == 0,]$vent <- num.vent.orig
         }
         else {
             
