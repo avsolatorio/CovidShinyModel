@@ -268,7 +268,7 @@ findBestRe <- function(N, start.exp, num.days, day.vec, num_actual.vec, params){
 #' It returns a vector of beta values that correspond with the intervention dataframe. 
 #'
 #' @param int.table Dataframe with columns: Day, New.Re (or New.Double.Time), and 
-#' Days.of.Smoothing
+#' Time.until.full.effectiveness
 #' @param gamma Numeric. 
 #' @param usedouble Boolean. TRUE if doubling time is used as the metric. 
 #'
@@ -295,7 +295,7 @@ create.beta.vec <- function(int.table, gamma, usedouble){
   day.vec <- int.table.temp$Day
   rep.vec <- day.vec[2:length(day.vec)] - day.vec[1:length(day.vec) - 1]
   betas <- int.table.temp$beta[1:length(day.vec) - 1]
-  smooth.vec <- int.table.temp$Days.of.Smoothing
+  smooth.vec <- int.table.temp$Time.until.full.effectiveness
   
   beta.vec <- c()
   
