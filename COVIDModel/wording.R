@@ -6,7 +6,7 @@
 ##  General
 ##  ............................................................................
 
-app.title <- "COVID-19 Epidemic Modeling"
+app.title <- "LEMMA - Local Epidemic Modeling for Management & Action"
 
 about.wording <- "<h4><b>What does this tool do?</b></h4>
 The app projects numbers of <i> active cases, hospitalizations, ICU-use and 
