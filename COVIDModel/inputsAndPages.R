@@ -16,14 +16,14 @@ library(shinyWidgets)
 ##  ............................................................................
 
 incubation.period.input <- function(incubation.period){
-  input.return <- sliderInput('incubation.period', incubation.input.wording, min = 0, max = 30, step = 1, 
+  input.return <- sliderInput('incubation.period', incubation.input.wording, min = 1, max = 30, step = 1, 
                               value = incubation.period, width = '100%')
   
   return(input.return)
 }
 
 illness.length.input <- function(illness.length){
-  input.return <- sliderInput('illness.length', infectious.input.wording, min = 0, max = 30, step = 1, 
+  input.return <- sliderInput('illness.length', infectious.input.wording, min = 1, max = 30, step = 1, 
                               value = illness.length, width = '100%')
   
   return(input.return)
@@ -55,7 +55,7 @@ vent.rate.input <- function(vent.rate){
 
 
 hosp.after.inf.input <- function(hosp.delay.time){
-  input.return <- sliderInput('hosp.after.inf', inf.to.hosp.wording, min = 0, max = 30, step = 1, 
+  input.return <- sliderInput('hosp.after.inf', inf.to.hosp.wording, min = 1, max = 30, step = 1, 
                               value = hosp.delay.time, width = '100%')
   
   return(input.return)
@@ -139,7 +139,8 @@ predict.re.page <- function(curr.date){
     useShinyjs(),
     
     HTML("<h4> Estimate Re based on historical hospitalizations</h4>
-         Provide data from past dates to estimate the Re value.<br><br>"),
+         Provide data from past dates to estimate the Re value. (<b>Note</b>: This is a beta
+         feature and awaiting technical validation.)<br><br>"),
     
     splitLayout(
       
