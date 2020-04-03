@@ -94,7 +94,7 @@ double.int.warning <- "You have already added an intervention on this date."
 
 incubation.input.wording <- "Number of Days from Infection to Becoming Infectious (Latent Period)"
 
-infectious.input.wording <- "For Non-Hospitalized, Number of Days from Infection to No Longer Infectious"
+infectious.input.wording <- "For Non-Hospitalized, Number of Days of Infectiousness"
 
 per.hosp.wording <- "Percent of Infected that are Hospitalized"
 
@@ -102,7 +102,7 @@ per.icu.wording <- "Percent of All Hospitalized That are Currently in the ICU"
 
 per.vent.wording <- "Percent of All ICU Patients that are Currently Ventilated"
 
-inf.to.hosp.wording <- "For Hospitalized, Number of Days from Infection to Hospitalization"
+inf.to.hosp.wording <- "For Hospitalized, Number of Days from Becoming Infectious to Hospitalization"
 
 hosp.to.icu.wording <- "Number of days from hospitalization to ICU Admission"
 
