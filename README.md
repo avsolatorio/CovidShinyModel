@@ -1,30 +1,54 @@
-# Covid-19 Epidemic Modeling with R Shiny
-This is a shiny app that models the COVID-19 epidemic. This is based on the <a href="http://penn-chime.phl.io/">Penn Chime app</a> - all credit goes to the Penn Medicine and Code for Philly team for their idea. 
+# LEMMA (Local Epidemic Modeling for Management & Action) 
 
-A beta version of the app is live <a href="https://jpspeng.shinyapps.io/COVIDModel/">here</a>.
+<!-- badges: start -->
+[![R build status](https://github.com/lemdt/CovidShinyModel/workflows/R-CMD-check/badge.svg)](https://github.com/lemdt/CovidShinyModel/actions)
+<!-- badges: end -->
+
+LEMMA (Local Epidemic Modeling for Management & Action) is a tool designed to accept local and regional information about the SARS-CoV-2 (COVID-19) epidemic and provide relevant projections about epidemic trajectory to inform strategic planning and resource management. These projections are based on a modified Susceptible-Exposed-Infectious-Recovered (SEIR) model and are parameterized using local epidemic data on the number of hospitalizations. Outputs include daily number hospitalizations, ICU use, ventilator use, as well as total cases, active cases, and resolved cases. 
+
+Development of the app is ongoing, and a live, stable version is currently unavailable (as of April 6, 2020). To use the app, you can run locally or use the pre-release development version in the "Resources and Documentation" section below. 
 
 ## Development Environment Setup (R)
 
-The shiny app is located in the folder /CovidModel. 
+To run the app locally, load up R or Rstudio and run:
 
-To run and test locally on your computer: 
-
-1) Install <a href="https://www.r-project.org/">R</a> and <a href="https://rstudio.com/products/rstudio/download/">R Studio</a>.
-
-2) Open R Studio and in the console, do the following to install the packages:
-```
-reqs <- c('shiny', 'ggplot2', 'shinyWidgets', 'data.table', 'DT', 'dplyr', 'shinyjs')
-install.packages(reqs)
+```coffee
+remotes::install_github('lemdt/CovidShinyModel')
+covidshiny::start_app()
 ```
 
-3) To run locally, open ui.R or server.R in R Studio and press "Run App" on the upper right hand corner. Or from the commandline run `shiny::runApp()`
+## Resources and Documentation
 
-## Repo Organization
+Links to live versions of the app and documentation are shown below. 
 
-The live "production" version of the app is on <a href="https://jpspeng.shinyapps.io/COVIDModel/">https://jpspeng.shinyapps.io/COVIDModel/</a>. The code for the production version is in the [master branch](https://github.com/jpspeng/CovidShinyModel)
+Note that as of April 6, 2020, the app is only available in a pre-release form. The stable version of the app will be available within the next few days. 
 
-Pre-release versions of the app are on <a href="https://jpspeng.shinyapps.io/COVIDModel/">https://jpspeng.shinyapps.io/COVIDModel1Prerelease/</a> and <a href="https://jpspeng.shinyapps.io/COVIDModel/">https://jpspeng.shinyapps.io/COVIDModel2Prerelease/</a>. (Model 1 currently uses a deterministic model while Model 2 uses a Markov model.) The code for these versions are in the <b>prerelease</b> branch.
+| Resource | Description | Branch |
+|:--|:--|:--|
+| Stable release of shiny app | not released  | master | 
+| Pre release of next Shiny app | http://64.225.45.108:3838/lemma/ | prerelease-changes |
+| Package documentation | https://lemdt.github.io/CovidShinyModel/ | master |
 
+
+## Issues and bugs
+
+If you find any issues or problems, please post an [issue](https://github.com/lemdt/CovidShinyModel/issues)
+
+
+## License
+ 
+The MIT License (MIT)
+
+Copyright (c) 2020 LEMMA
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+## Code of Conduct
 
 Please note that the 'CovidShinyModel' project is released with a
 [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
